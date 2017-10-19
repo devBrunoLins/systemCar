@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-//#include <conio.h>
-//#include <graphics.h>
 #include <ctype.h>
 
 struct cadastro //Defini o banco de dados dos clientes 
@@ -40,7 +38,7 @@ int main(void){
     	printf("\t¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
     	printf("\n\n");
         printf("\t1 - Cadastrar Novo Cliente\n");
-        printf("\t2 - Cliente\n");
+        printf("\t2 - Lista de Clientes\n");
         printf("\t3 - Excluir Cliente\n");
         printf("\t4 - Sair\n");
         printf("\n\n");
@@ -80,19 +78,20 @@ int main(void){
         {
             system("cls");
             do{
-            printf("Voce selecionou a opcao 2 - Clientes\n\n");
-            printf("1 - Pesquisar cliente por codigo\n");
-            printf("2 - Listar todos os clientes\n");
-            printf("3 - Voltar ao menu principal\n");
-            printf("Selecione uma opcao por favor: ");
+            printf("\n\n");
+            printf("\tPesquisar Clientes\n\n");
+            printf("\t1 - Por codigo\n");
+            printf("\t2 - Listar todos os Clientes\n");
+            printf("\t3 - Menu principal\n\n");
+            printf("\tOpcao: ");
             scanf("%d", &OpcaoCliente);
             getchar();
             
                  if(OpcaoCliente == 1)
                  {
-                    consultaCod();//vai puxar a função que consulta o codigo
+                    consultaCod(); //vai puxar a função que consulta o codigo
                 }
-                else if(OpcaoCliente == 2)//função que lista os cadastros
+                else if(OpcaoCliente == 2) // função que lista os cadastros
                 {
                     list();
                 }
@@ -108,8 +107,10 @@ int main(void){
         }
         else if (Opcao == 3)
         {
-            printf("Voce selecionou a opcao 3 - Excluir Cliente\n");
+            
             excluirCliente();//puxa a função que exçlui o cliente
+            printf("AAAAAE APAGO");
+            main(); // Chama function Main
         }
         else if (Opcao == 4)
         {
@@ -128,10 +129,10 @@ void list(){ // Lista os usuarios cadastrados.
     for(i=0;i<200;i++)//vai contar a lista de usuarios mostrando os preenchidos
     {
         if(log[i].cod!= '\0'){
-            printf("\nCodigo: %d \nNome: %s\nCPF: %d\nEndereco: %s\nTelefone: %d\n CNH:  %d\n", log[i].cod,log[i].nome,log[i].CPF,log[i].endereco,log[i].telefone,log[i].CNH);
+            printf("\n\tCodigo: %d \n\tNome: %s\n\tCPF: %d\n\tEndereco: %s\n\tTelefone: %d\n\tCNH:  %d\n", log[i].cod,log[i].nome,log[i].CPF,log[i].endereco,log[i].telefone,log[i].CNH);
     }
 }
-    printf("Pressione enter para volta ao menu principal");
+    printf("\n\tPressione Enter para volta ao menu principal");
     getchar();
     system("cls");
 
@@ -153,7 +154,9 @@ void cadastroP(int cod, int pos){ //Cadastro das pessoas
         gets(log[pos].CNH);
         log[pos].vazio = 1;
         opt ==1;
-        //getchar();   
+        printf("\t\n");
+    	printf("\tCadastro realizado com sucesso.");
+        getchar();   
     }while(opt==1);
     system("cls");
     main();
@@ -195,7 +198,7 @@ void consultaCod (void) // CONSULTAR 1 CADASTRADO QUALQUER VIA CÓDIGO DADO POR U
 {
     int cont = 0, cod;
 
-    printf("\nEntre com o codigo\n");
+    printf("\n\tCodigo: ");
     scanf("%d",&cod);
     fflush(stdin);
     system("cls");
@@ -251,7 +254,7 @@ void excluirCliente(void)  // EXCLUI CLIENTE
             {
                 printf("\nCodigo: %d \nNome: %s\nCPF: %s\nEndereco: %s\nTelefone: %s\n\n", log[cont].cod,log[cont].nome,log[cont].CPF,log[cont].endereco,log[cont].telefone);
                 getchar();
-                printf("\nDeseja realmente exlucir? s/n: ");
+                printf("\nDeseja realmente excluir? s/n: ");
                 scanf("%s",&resp);
 
                 if ( ( resp == 'S' ) || ( resp == 's' ) )
